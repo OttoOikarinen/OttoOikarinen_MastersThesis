@@ -1,0 +1,15 @@
+# LaTeX-aputiedostot
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.toc
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.out
+
+# Valmis PDF (valinnainen: joskus ohjaajat haluavat sen Gitiin, mutta yleensä ei)
+*.pdf
