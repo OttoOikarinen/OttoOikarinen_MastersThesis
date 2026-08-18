@@ -5,11 +5,33 @@
 *.log
 *.toc
 *.synctex.gz
-*.bbl
-*.blg
-*.bcf
+*.bbl*
+*.blg*
+*.bcf*
 *.run.xml
 *.out
 
+## List of figures / tables
+*.lof
+*.lot
+
+# Nomenklatuuri (nomencl-paketti, makeindex)
+*.nlo
+*.nls
+*.ilg
+
+# Hyperref
+*.upa
+*.upb
+
+# PDF/A-metadata (pdfx-paketti; main.xmpdata generoituu automaattisesti
+# main.tex:n filecontents-lohkosta, ei käsin ylläpidettävä)
+*.xmpdata
+*.xmpi
+
 # Valmis PDF (valinnainen: joskus ohjaajat haluavat sen Gitiin, mutta yleensä ei)
+*.pdf
+
+# Claude Code -session-tiedostot (paikallisia, ei kuulu versionhallintaan)
+.claude/worktrees/ Valmis PDF (valinnainen: joskus ohjaajat haluavat sen Gitiin, mutta yleensä ei)
 *.pdf

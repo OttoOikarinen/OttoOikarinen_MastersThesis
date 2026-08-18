@@ -30,8 +30,8 @@
 %% This data will appear in the pdf file properties %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{filecontents*}[overwrite]{\jobname.xmpdata}
-\Title{Title of the work}
-\Author{Author_firstname Author_lastname}
+\Title{AI Driven MVA Development Process in a Start-Up Environment}
+\Author{Otto Oikarinen}
 \Language{en-GB}
 \Subject{The abstract or short description.}
 \Keywords{template\sep thesis\sep LaTeX}
@@ -42,19 +42,19 @@
 \input{pref}  % settings
 \def\version{1.04/2025.08.13}   % version number
 % give you name here, will be printed on the front page, abstract, and tiivistelmä.
-\def\myname{Author Name}
+\def\myname{Otto Oikarinen}
 % give your thesis information here (English), which will be printed on the front page and abstract.
-\def\mytitle{LUT thesis template for \LaTeX}
+\def\mytitle{AI Driven MVA Development Process in a Start-Up Environment}
 \def\mysubtitle{Version \version}       % subtitle
 %%\def\mysubtitle{}                     % no subtitle
 \def\university{Lappeenranta–Lahti University of Technology LUT}
-\def\school{LUT School of Energy Systems}
+%\def\school{LUT School of Energy Systems}
 %\def\school{LUT Business School}
-%\def\school{LUT School of Engineering Science}
-\def\thesisyear{2025}
-\def\thesistype{Bachelor’s thesis}
+\def\school{LUT School of Engineering Science}
+\def\thesisyear{2026}
+\def\thesistype{Master’s thesis}
 %%\def\thesistype{Master’s thesis}
-\def\degreeprogramme{Degree Programme in Energy Technology}
+%\def\degreeprogramme{Degree Programme in Energy Technology}
 %%\def\degreeprogramme{Degree Programme in Business Administration}
 %%\def\degreeprogramme{Degree Programme in Chemical Engineering}
 %%\def\degreeprogramme{Degree Programme in Computational Engineering}
@@ -63,19 +63,19 @@
 %%\def\degreeprogramme{Degree Programme in Industrial Engineering and Management}
 %%\def\degreeprogramme{Degree Programme in Mechanical Engineering}
 %%\def\degreeprogramme{Degree Programme in Social Sciences}
-%%\def\degreeprogramme{Degree Programme in Software Engineering}
-\def\examinerA{Title First name and Last name (optional degree)}
+\def\degreeprogramme{Degree Programme in Software Engineering}
+\def\examinerA{Professor Kari Smolander}
 \def\examinerB{Title First name and Last name (optional degree)}
 % give your thesis information here (Finnish), which will be printed on the tiivistelmä.
-\def\mytitleFIN{LUT opinnäytetyöpohja, \LaTeX}
+\def\mytitleFIN{AI pohjainen MVA-kehitysprosessi start-up -ympäristössä}
 \def\mysubtitleFIN{Versio \version}
 \def\universityFIN{Lappeenrannan–Lahden teknillinen yliopisto LUT}
-\def\schoolFIN{LUTin energiajärjestelmien tiedekunta}
-%%\def\schoolFIN{LUTin insinööritieteiden tiedekunta}
+%%\def\schoolFIN{LUTin energiajärjestelmien tiedekunta}
+\def\schoolFIN{LUTin insinööritieteiden tiedekunta}
 %%\def\schoolFIN{LUT-kauppakorkeakoulu}
-\def\thesistypeFIN{Kandidaatintyö}
-%\def\thesistypeFIN{Diplomityö}
-\def\degreeprogrammeFIN{Energiatekniikan koulutusohjelma}
+%\def\thesistypeFIN{Kandidaatintyö}
+\def\thesistypeFIN{Diplomityö}
+%\def\degreeprogrammeFIN{Energiatekniikan koulutusohjelma}
 %\def\degreeprogrammeFIN{Kauppatieteiden koulutusohjelma}
 %\def\degreeprogrammeFIN{Kemiantekniikan koulutusohjelma}
 %\def\degreeprogrammeFIN{Laskennallisen tekniikan koulutusohjelma}
@@ -84,17 +84,17 @@
 %\def\degreeprogrammeFIN{Tuotantotalouden koulutusohjelma}
 %\def\degreeprogrammeFIN{Konetekniikan koulutusohjelma}
 %\def\degreeprogrammeFIN{Yhteiskuntatieteiden koulutusohjelma}
-%\def\degreeprogrammeFIN{Tietotekniikan koulutusohjelma}
-\def\examinerAFIN{Titteli Etunimi Sukuni (Vaihtoehtoinen oppiarvo)}
+\def\degreeprogrammeFIN{Tietotekniikan koulutusohjelma}
+\def\examinerAFIN{Professori Kari Smolander}
 \def\examinerBFIN{Titteli Etunimi Sukuni (Vaihtoehtoinen oppiarvo)}
 
 % remove the next part to clear the nomenclature introduction
-\renewcommand{\nompreamble}{In the present work, variables and constants are denoted using \textit{slanted style}, vectors are denoted using \textbf{bold regular style}, and abbreviations and dimensionless numbers are denoted using regular style. See the SI-unit style \href{https://physics.nist.gov/cuu/Units/checklist.html}{\textcolor{blue}{guide}}. (Note: The lists include some examples, but the author must define all variables used in the thesis according to common practice in the research field. Sometimes this can be challenging as the practices are not universal. Nomenclature example \LaTeX~ entries are given in ch1.tex file. The nomenclature entry should appear in the code after introducing the symbol or abbreviation in the text or equation. Remove this note and other similar notes from the actual thesis.)}
+%\renewcommand{\nompreamble}{In the present work, variables and constants are denoted using \textit{slanted style}, vectors are denoted using \textbf{bold regular style}, and abbreviations and dimensionless numbers are denoted using regular style. See the SI-unit style \href{https://physics.nist.gov/cuu/Units/checklist.html}{\textcolor{blue}{guide}}. (Note: The lists include some examples, but the author must define all variables used in the thesis according to common practice in the research field. Sometimes this can be challenging as the practices are not universal. Nomenclature example \LaTeX~ entries are given in ch1.tex file. The nomenclature entry should appear in the code after introducing the symbol or abbreviation in the text or equation. Remove this note and other similar notes from the actual thesis.)}
 
 \begin{document}            % Document start
 \pagestyle{empty}           % Page layout: empty
 \setlength{\parindent}{0pt} % No indents
-\include{info}              % Add info page, remove or comment out
+%\include{info}              % Add info page, remove or comment out
 \include{nimio}             % Add front page
 \include{abstract}          % Add eng abstract
 \include{tiivistelma}       % Add fin abstract
@@ -104,31 +104,32 @@
 \pagestyle{fancy}           % Page layout: fancy with page numbers
 \include{toc}               % Add table of content
 \include{lot_lof}           % Add figure and table lists
-\include{ch1}               % Add chapter 1
-\include{ch2}               % Add chapter 2
-\include{ch3}               % Add chapter 3
-\include{ch4}               % Add chapter 4
+\include{ch1}               % Add chapter introduction
+\include{ch2}               % Add chapter Literature Review
+\include{ch3}               % Add chapter Research Process
+\include{ch4}               % Add chapter MVA Development Process
+\include{ch5}               % Add chapter Demonstration
+\include{ch6}               % Add chapter Discussion
+\include{ch7}               % Add chapter Conclusions
 \include{references}        % Add references
 
 %%%%%%%%%%%%%%%%%%%
 %% Appendix section starts here
 %%%%%%%%%%%%%%%%%%%
-\addtocontents{toc}{\cftpagenumbersoff{section}} % Add "Appendices" to table of content without page number
+%\addtocontents{toc}{\cftpagenumbersoff{section}} % Add "Appendices" to table of content without page number
 % Modify the section heading to contain "Appendix" at the beginning
-\titleformat{\section}
-  {\Large}
-  {Appendix \thesection}{1em}{}
+%\titleformat{\section}
+%{\Large}
+%{Appendix \thesection}{1em}{}
 
 % Appendices
-\begin{appendices}
-\renewcommand{\thesection}{\arabic{section}}    % Numbering style
-\input{appA}            % Add appendix 1
-\input{appB}            % Add appendix 2
-\input{appC}            % Add appendix 3
-\input{appD}            % Add appendix 4
-\input{appG}            % Add appendix 5
-\input{appE}            % Add appendix 6
-\input{appF}            % Add appendix 7
-\end{appendices}        % End of appendix sections
+%\begin{appendices}
+%	\renewcommand{\thesection}{\arabic{section}}    % Numbering style
+%	\input{appA}            % Add appendix 1
+%	\input{appB}            % Add appendix 2
+%	\input{appC}            % Add appendix 3
+%	\input{appD}            % Add appendix 4
+%	\input{appG}            % Add appendix 5
+%\end{appendices}        % End of appendix sections
 
 \end{document}          % End of document
