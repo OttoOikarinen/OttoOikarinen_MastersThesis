@@ -30,8 +30,8 @@
 *.xmpi
 
 # Valmis PDF (valinnainen: joskus ohjaajat haluavat sen Gitiin, mutta yleensä ei)
-*.pdf
+main.pdf
 
 # Claude Code -session-tiedostot (paikallisia, ei kuulu versionhallintaan)
 .claude/worktrees/ Valmis PDF (valinnainen: joskus ohjaajat haluavat sen Gitiin, mutta yleensä ei)
-*.pdf
+
