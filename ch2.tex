@@ -5,7 +5,6 @@ In order to understand startups and how AI-driven MVA development could happen, 
 
 \subsection{Characteristics of a Software Start-up}
 \textcite{giardinoSoftwareDevelopmentStartup2016} define software startups as "newly created companies with no operating history and oriented towards producing cutting-edge products." This definition reveals a few characteristics and constraints that affect how software startups operate. \textcite{suttonRoleProcessSoftwareJuly-Aug./2000} provides a list of these characteristics and constraints that are present in most software startups.
-
 \begin{itemize}
 	\item Young and inexperienced: Startups are new or relatively young and immature when compared to more mature and established software companies. They have very little accumulated experience or history.
 	\item Limited resources: Startups usually have a focus on getting the product out, promoting it, and building alliances. Initial resources are used to achieve these activities.
@@ -14,6 +13,9 @@ In order to understand startups and how AI-driven MVA development could happen, 
 \end{itemize}
 
 \citeauthor{suttonRoleProcessSoftwareJuly-Aug./2000} argues that software startups do not often consider software processes. Because of their youth and immaturity, startups often do not have the foundations required for established processes. These foundations include "a historical record of experience, infrastructure for process instantiation and improvement, and repeatable and predictable practises." According to \citeauthor{suttonRoleProcessSoftwareJuly-Aug./2000}, process issues need to be solved and prioritized based on the startup's needs and the resources it has available.
+
+\textcite{jagerMasteringTOGAFStandard2025} defines minimum viable architecture as " an architecture that reflects exactly what is needed at the time – and nothing more." It is the minimum architecture "that is realizable and adds business value." These definitions are used in Agile development.
+
 
 \subsection{Software Architecture Design Process}
 It is useful to understand what has been the more traditional software architecture design process before replacing them with AI tools or adding new ones into the mix. In their paper \textcite{hofmeisterGeneralModelSoftware2007} present a general model derived from the industry. They selected multiple methods including Attribute-Driven Design, 4 Views, Rational Unified Process 4+1 views and a few others. They extracted the commonalities from these different methods to find the general model of architecture design.
@@ -29,6 +31,25 @@ The model by \citeauthor{hofmeisterGeneralModelSoftware2007} is presented in fig
 	\label{fig:Architecture_design_activities_hofmeister}
 \end{figure}
 
+In their article \textcite{chenCharacterizingArchitecturallySignificant2013} researched how ASRs could be characterized. They provided a list of indicators, which suggest that the ASR is architecturally significant:
+\begin{itemize}
+	\item Wide impact. If a requirement has wide impact across different components, subsystems, core modules, other requirements, or in other ways, it is likely to be architecturally significant.
+	\item Targeting trade-offs. If fulfilling a requirement requires making compromises regarding other requirements, the requirement is most likely architecturally significant.
+	\item Strictness. If a requirement is very strict and cannot be fulfilled by different design options it will determine architectural decisions because any other design is not possible.
+	\item Assumption braking. If the requirement breaks any of the fundamental assumptions the software engineer makes during the architect design process, it is architecturally significant.
+	\item Difficult to achieve. If it is hard to achieve and fulfill a requirement, it is likely architecturally significant.
+\end{itemize}
+
+\citeauthor{chenCharacterizingArchitecturallySignificant2013} also list heuristics, which are likely to go unmentioned by users but often include ASRs:
+
+\begin{itemize}
+	\item Quality attributes. If a software's quality attribute is included in a requirement, it is most likely architecturally significant.
+	\item Core features. Often a requirement that mentions system's core features is architecturally significant. Those features describe the most important expectations the users have for the software and are very essential to the success of the software product.
+	\item Constraints. If a requirement gives any constraints (such as time, money, or other constraints) it is most likely architecturally significant.
+	\item Application environment. If the requirement mentions the environment (such as a server, virtual machine, different embedded devices) where the application has to run it is most likely architecturally significant.
+\end{itemize}
+
+In their paper \citeauthor{chenCharacterizingArchitecturallySignificant2013} also argue that it is not always easy to recognise whether a requirement actually is architecturally significant. Using these characteristics can help engineers to recognise ASRs that might otherwise go unnoticed and take them into account. Perhaps these lists could be used to help AI agents recognise ASRs as well.
 
 \subsection{AI-driven Software Engineering}
 Since LLMs have started to emerge, researchers have been trying to stay on top of the development. Plenty of studies have been made to find how LLMs can be used and what are their possibilities and limitations. Researchers, businesses, and developers try to find, how these tools can be best used to make software design and development more efficient and how developers' productivity can be increased.
