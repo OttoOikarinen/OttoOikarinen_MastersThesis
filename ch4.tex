@@ -14,7 +14,9 @@ The artifact consists of a process flow diagram, a set of tables describing each
 
 The architecture design process is pictured in figure \ref{fig:artifact_design-process}. It is a process flow diagram that utilizes swimlanes to make it easier to understand what steps of the process are done by the AI or by the developer. Each rounded rectangle represents one step in the process. Green rectangles are steps performed by the developer and yellow rectangles represent tasks given to the AI. Blue icons represent different documents. The diagram is divided into three main parts, which are architectural analysis (section \ref{sec:architectural_analysis}), architectural synthesis (section \ref{sec:architectural_synthesis}), and architectural evaluation (section \ref{sec:architectural_evaluation}).
 
-The architectural backlog is ...
+The architectural backlog is an element connecting the three phases of the process. The concept comes from the general model by \textcite[pp.~114-115]{hofmeisterGeneralModelSoftware2007}, who found that in all the methods they studied, architects maintain a backlog of problems, issues, and needs they have to tackle. The backlog is also used to store ideas they might want to use. ASRs from architectural analysis, possible problems from architectural synthesis, and issues found in architectural evaluation are put into the backlog. An item in the backlog can be very simple, such as a statement like "A decision about X must be made." An item is removed from the backlog, when the issue has been solved. This way the backlog drives the design process and sets objectives of things that need to be solved.
+
+In this case, the backlog is a document that is used by both the developer and the AI. Each item in it has an ID, a type (ASR, open issue, decision to be made later, or evaluation finding), a description, the step it was created on, a priority, and a status. Both actors can access and modify the backlog at any time and items can be added as needed. However, only the developer can remove an item from the backlog. Initially the backlog is filled with the ASRs after step A2, as shown in figure~\ref{fig:artifact_design-process}. The step S1 accesses the backlog first.
 
 The following table \ref{tab:design_process_steps} lists all the steps in the design process. Each step has an ID, name, actor, and potential output.
 
@@ -39,8 +41,6 @@ The following table \ref{tab:design_process_steps} lists all the steps in the de
 	\end{tabularx}
 \end{table}
 
-Each step of the process outlined in table \ref{tab:design_process_steps} and figure \ref{fig:artifact_design-process} is described in detail in the following sections. Each step has its own table with the same structure. \emph{Purpose} describes what the step aims to achieve. \emph{Input} lists all the documents needed to perform the step. \emph{Actor} tells whether the step is done by the developer or the AI. \emph{Prompt} refers to the prompt that is used in the step. The prompts can be found from the Appendix~\ref{app:prompts}. \emph{Output} details the documents the step produces. \emph{Developer checks} lists what the developer must verify before they can move on to the next step. \emph{Completion criteria} defines when the step is ready. \emph{Rationale} points to the section where the design of the step is justified and refers to the relevant research.
-
 \begin{figure}[htbp]
 	\centering
 	\pdftooltip{%
@@ -50,6 +50,9 @@ Each step of the process outlined in table \ref{tab:design_process_steps} and fi
 	\label{fig:artifact_design-process}
 \end{figure}
 \FloatBarrier
+
+Each step of the process outlined in table \ref{tab:design_process_steps} and figure \ref{fig:artifact_design-process} is described in detail in the following sections. Each step has its own table with the same structure. \emph{Purpose} describes what the step aims to achieve. \emph{Input} lists all the documents needed to perform the step. \emph{Actor} tells whether the step is done by the developer or the AI. \emph{Prompt} refers to the prompt that is used in the step. The prompts can be found from the Appendix~\ref{app:prompts}. \emph{Output} details the documents the step produces. \emph{Developer checks} lists what the developer must verify before they can move on to the next step. \emph{Completion criteria} defines when the step is ready. \emph{Rationale} points to the section where the design of the step is justified and refers to the relevant research.
+
 
 \subsection{Architectural Analysis}
 \label{sec:architectural_analysis}
