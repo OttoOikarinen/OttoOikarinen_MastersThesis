@@ -4,11 +4,32 @@
 
 Based on the literature review, a MVA development process has been built on top of the recent research and practical insight. As a base for the process the general model for software architecture design process by \textcite{hofmeisterGeneralModelSoftware2007} is used. The process is divided into three main sections that can be found from figure \ref{fig:Architecture_design_activities_hofmeister}. The first main section is Architectural Analysis, the second is Architectural Synthesis, and the third is Architectural Evaluation. However, according to \citeauthor{hofmeisterGeneralModelSoftware2007} these steps are not sequential but happening simultaneously in small leaps. A concept of backlog is utilized. It includes the architectural problems that need to be addressed and can be modified any time during the design process.
 
-Another fundamental insight impacting and guiding the whole process is by \textcite{terragniFutureAIDrivenSoftware2025} who argue that software engineers and AI will work in close symbiosis. As presented in figure \ref{fig:AI_in_development_process_terragni}, there will be a constant communication flowing between the AI and the software engineer. AI will generate and verify the things it has produced. AI will also explain to the software engineer what it has done and why. The engineer will give AI initial and guiding instructions, and enquiries regarding the outputs. The engineer will also improve and verify the outputs given by AI in every step. According to the model, AI is never working fully autonomously without the guidance and verification of the engineer. However, it also seems like engineer is always utilizing the AI in some suitable way. This insight will also guide the MVA design process.
+Another fundamental insight impacting and guiding the whole process is by \textcite{terragniFutureAIDrivenSoftware2025} who argue that software engineers and AI will work in close symbiosis. This paper is a vision paper, but it provides a useful idea of how a human and an AI could work together. As presented in figure \ref{fig:AI_in_development_process_terragni}, there will be a constant communication flowing between the AI and the software engineer. AI will generate and verify the things it has produced. AI will also explain to the software engineer what it has done and why. The engineer will give AI initial and guiding instructions, and enquiries regarding the outputs. The engineer will also improve and verify the outputs given by AI in every step. According to the model, AI is never working fully autonomously without the guidance and verification of the engineer. However, it also seems like engineer is always utilizing the AI in some suitable way. This insight will also guide the MVA design process.
 
 Third thing affecting the process are the characteristics of software start-ups. They have very limited resources, are often young and inexperienced, try to get into new markets using new technologies, and have multiple actors influencing them \parencite{suttonRoleProcessSoftwareJuly-Aug./2000}. Especially the resources affect the MVA design process, since it needs to be relatively light, cheap, and fast. Software start-ups don't often have too much time, money, and workforce available. This is another reason why AI will be largely used in different parts of the process: the productivity of a software engineer can be increased by 35\% using AI tools \parencite{amasantiImpactAIGeneratedSolutions2026}.
 
+The artifact consists of a process flow diagram, a set of tables describing each step in detail, a set of prompts for each AI step, document templates, and a checklist. The artifact aims to be clear, lightweight, and useful. Clear means that it can easily be followed by a developer in a start-up, each step has a single purpose, and all prompts and other resources are provided. Lightweight means that a single developer can go through the process in a single workweek, and the process is suitable for creating minimum viable architecture, where there is nothing unnecessary. Usable means that following the process produces an architectural design decision how every ASR is taken into account.
+
+\subsection{Process Overview}
+
+The architecture design process is pictured in figure \ref{fig:artifact_design-process}. It is a process flow diagram that utilizes swimlanes to make it easier to understand what steps of the process are done by the AI or by the developer. Each rounded rectangle represents one step in the process. Green rectangles are steps performed by the developer and yellow rectangles represent tasks given to the AI. Blue icons represent different documents. The diagram is divided into three main parts, which are architectural analysis (chapter \ref{sec:architectural_analysis}), architectural synthesis (chapter \ref{sec:architectural_synthesis}), and architectural evaluation (chapter \ref{sec:architectural_evaluation}).
+
+The architectural backlog is ...
+
+The following table lists all the steps in the design process. Each step has an ID, name, actor, and potential output.
+
+\begin{figure}[htbp]
+	\centering
+	\pdftooltip{%
+		\includegraphics[width=\textwidth]{figs/artifact_design-process.pdf}%
+	}{The process flow chart for architecture design process.}
+	\caption{The process flow chart for architecture design process.}
+	\label{fig:artifact_design-process}
+\end{figure}
+\FloatBarrier
+
 \subsection{Architectural Analysis}
+\label{sec:architectural_analysis}
 
 The purpose of Architectural Analysis is to figure out the set of ASRs for the system.In the general model provided by \textcite{hofmeisterGeneralModelSoftware2007}, Architectural Analysis has two inputs: architectural concerns and context. Architectural concerns include requirement, but they might also include things like mandatory design decisions such as standards. The context means the environment of the system. That includes "the developmental, operational, political, and other influences of the system." In this process it is assumed, that these two inputs have already been formed.
 
@@ -17,6 +38,7 @@ As a first step, these documents are given to the chosen LLM tool. It is prompte
 A study made by \textcite{tagliaferroLeveragingLLMsAutomate2025} found that LLMs are able to produce UML components from natural language specifications. In this case smaller steps are taken at a time, since that is more in line with the constant communication flow proposed by \textcite{terragniFutureAIDrivenSoftware2025}. All of these outputs are asked, so that the engineer can go through what the AI has produced, and why it came to different conclusions. This gives the engineer the opportunity to correct mistakes made by the LLM in an earlier stage, guide it properly in the next stages, and see if there is more context, input, or information needed. The engineer can do their own analysis, add more ARSs, remove some or make decisions in the case the LLM is not sure whether a requirement is significant or not. Because these phases aren't sequential, both the LLM and the engineer can modify the list of ASRs any time during the design process.
 
 \subsection{Architectural Synthesis}
+\label{sec:architectural_synthesis}
 
 According to \textcite{hofmeisterGeneralModelSoftware2007}, the purpose of this design phase is to propose solutions for the ASRs specified in the previous phase. Requirement-to-architecture is the part of software development where LLMs are most often utilized \parencite{espositoGenerativeAISoftware2026}.
 
@@ -31,6 +53,7 @@ Another way of articulating the architecture is through diagrams. Diagrams show 
 The LLM is therefore prompted to create the necessary amount of diagrams on different levels of the system (e.g. context, container, and component diagrams) so that all DDs are pictured in the diagrams somehow. The engineer goes through the PlantUML diagrams and guides the LLM to correct mistakes it has made, remove unnecessary parts, and add details it has forgotten or omitted.
 
 \subsection{Architectural Evaluation}
+\label{sec:architectural_evaluation}
 
 The purpose of this phase is to ensure that the made architectural decisions are correct \parencite{hofmeisterGeneralModelSoftware2007}.
 
