@@ -16,7 +16,28 @@ The architecture design process is pictured in figure \ref{fig:artifact_design-p
 
 The architectural backlog is ...
 
-The following table lists all the steps in the design process. Each step has an ID, name, actor, and potential output.
+The following table \ref{tab:design_process_steps} lists all the steps in the design process. Each step has an ID, name, actor, and potential output.
+
+\begin{table}[!htbp]
+	\caption{Steps of the architecture design process.}
+	\label{tab:design_process_steps}
+	\begin{tabularx}{\textwidth}{l X l X}
+		\toprule
+		\textbf{ID} & \textbf{Step}                                               & \textbf{Actor} & \textbf{Output}                                      \\
+		\midrule
+		A1          & Identify ASR candidates using ASR indicators.               & AI (LLM)       & ASRs with rationale and confidence + uncertain ASRs. \\
+		A2          & Review ASRs and add, remove and decide on uncertain ones.   & Developer      & ASRs to the backlog.                                 \\
+		S1          & Generate solution options for each ASR.                     & AI (LLM)       & Options for ASRs with pros, cons, and trade-offs.    \\
+		S2          & Eliminate, select, and add solutions.                       & Developer      & Selected solutions.                                  \\
+		S3          & Write the design rationale document.                        & AI (LLM)       & Design rationale: decisions, pros, cons, trade-offs. \\
+		S4          & Check the rationale for missing details and errors.         & Developer      & Design decisions.                                    \\
+		S5          & Generate PlantUML diagrams (context, container, component). & AI (LLM)       & PlantUML diagrams.                                   \\
+		S6          & Review diagrams and give prompts for corrections.           & Developer      & Candidate architectural solutions.                   \\
+		E1          & Separate AI evaluates design against ASRs.                  & AI (LLM)       & Evaluation findings.                                 \\
+		E2          & Decisions on findings. Accept or return to backlog.         & Developer      & Findings and/or Validated architecture.              \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
 
 \begin{figure}[htbp]
 	\centering
