@@ -116,20 +116,20 @@
 %%%%%%%%%%%%%%%%%%%
 %% Appendix section starts here
 %%%%%%%%%%%%%%%%%%%
-%\addtocontents{toc}{\cftpagenumbersoff{section}} % Add "Appendices" to table of content without page number
+\addtocontents{toc}{\cftpagenumbersoff{section}} % Add "Appendices" to table of content without page number
 % Modify the section heading to contain "Appendix" at the beginning
-%\titleformat{\section}
-%{\Large}
-%{Appendix \thesection}{1em}{}
+\titleformat{\section}
+{\Large}
+{Appendix \thesection}{1em}{}
 
 % Appendices
-%\begin{appendices}
-%	\renewcommand{\thesection}{\arabic{section}}    % Numbering style
-%	\input{appA}            % Add appendix 1
-%	\input{appB}            % Add appendix 2
-%	\input{appC}            % Add appendix 3
-%	\input{appD}            % Add appendix 4
-%	\input{appG}            % Add appendix 5
-%\end{appendices}        % End of appendix sections
+\begin{appendices}
+	\renewcommand{\thesection}{\arabic{section}}    % Numbering style
+	\input{appA}            % Add appendix 1
+	%	\input{appB}            % Add appendix 2
+	%	\input{appC}            % Add appendix 3
+	%	\input{appD}            % Add appendix 4
+	%	\input{appG}            % Add appendix 5
+\end{appendices}        % End of appendix sections
 
 \end{document}          % End of document

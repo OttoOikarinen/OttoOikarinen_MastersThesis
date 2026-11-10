@@ -8,11 +8,11 @@ Another fundamental insight impacting and guiding the whole process is by \textc
 
 Third thing affecting the process are the characteristics of software start-ups. They have very limited resources, are often young and inexperienced, try to get into new markets using new technologies, and have multiple actors influencing them \parencite{suttonRoleProcessSoftwareJuly-Aug./2000}. Especially the resources affect the MVA design process, since it needs to be relatively light, cheap, and fast. Software start-ups don't often have too much time, money, and workforce available. This is another reason why AI will be largely used in different parts of the process: the productivity of a software engineer can be increased by 35\% using AI tools \parencite{amasantiImpactAIGeneratedSolutions2026}.
 
-The artifact consists of a process flow diagram, a set of tables describing each step in detail, a set of prompts for each AI step, document templates, and a checklist. The artifact aims to be clear, lightweight, and useful. Clear means that it can easily be followed by a developer in a start-up, each step has a single purpose, and all prompts and other resources are provided. Lightweight means that a single developer can go through the process in a single workweek, and the process is suitable for creating minimum viable architecture, where there is nothing unnecessary. Usable means that following the process produces an architectural design decision how every ASR is taken into account.
+The artifact consists of a process flow diagram, a set of tables describing each step in detail, a set of prompts for each AI step, document templates, and a checklist. The artifact aims to be clear, lightweight, and useful. Clear means that it can easily be followed by a developer in a start-up, each step has a single purpose, and all prompts and other resources are provided. Lightweight means that a single developer can go through the process in a single workweek, and the process is suitable for creating minimum viable architecture, where there is nothing unnecessary. Useful means that following the process produces an architectural design decision how every ASR is taken into account.
 
 \subsection{Process Overview}
 
-The architecture design process is pictured in figure \ref{fig:artifact_design-process}. It is a process flow diagram that utilizes swimlanes to make it easier to understand what steps of the process are done by the AI or by the developer. Each rounded rectangle represents one step in the process. Green rectangles are steps performed by the developer and yellow rectangles represent tasks given to the AI. Blue icons represent different documents. The diagram is divided into three main parts, which are architectural analysis (chapter \ref{sec:architectural_analysis}), architectural synthesis (chapter \ref{sec:architectural_synthesis}), and architectural evaluation (chapter \ref{sec:architectural_evaluation}).
+The architecture design process is pictured in figure \ref{fig:artifact_design-process}. It is a process flow diagram that utilizes swimlanes to make it easier to understand what steps of the process are done by the AI or by the developer. Each rounded rectangle represents one step in the process. Green rectangles are steps performed by the developer and yellow rectangles represent tasks given to the AI. Blue icons represent different documents. The diagram is divided into three main parts, which are architectural analysis (section \ref{sec:architectural_analysis}), architectural synthesis (section \ref{sec:architectural_synthesis}), and architectural evaluation (section \ref{sec:architectural_evaluation}).
 
 The architectural backlog is ...
 
@@ -23,21 +23,23 @@ The following table \ref{tab:design_process_steps} lists all the steps in the de
 	\label{tab:design_process_steps}
 	\begin{tabularx}{\textwidth}{l X l X}
 		\toprule
-		\textbf{ID} & \textbf{Step}                                               & \textbf{Actor} & \textbf{Output}                                      \\
+		\textbf{ID} & \textbf{Step}                                              & \textbf{Actor} & \textbf{Output}                                     \\
 		\midrule
-		A1          & Identify ASR candidates using ASR indicators.               & AI (LLM)       & ASRs with rationale and confidence + uncertain ASRs. \\
-		A2          & Review ASRs and add, remove and decide on uncertain ones.   & Developer      & ASRs to the backlog.                                 \\
-		S1          & Generate solution options for each ASR.                     & AI (LLM)       & Options for ASRs with pros, cons, and trade-offs.    \\
-		S2          & Eliminate, select, and add solutions.                       & Developer      & Selected solutions.                                  \\
-		S3          & Write the design rationale document.                        & AI (LLM)       & Design rationale: decisions, pros, cons, trade-offs. \\
-		S4          & Check the rationale for missing details and errors.         & Developer      & Design decisions.                                    \\
-		S5          & Generate PlantUML diagrams (context, container, component). & AI (LLM)       & PlantUML diagrams.                                   \\
-		S6          & Review diagrams and give prompts for corrections.           & Developer      & Candidate architectural solutions.                   \\
-		E1          & Separate AI evaluates design against ASRs.                  & AI (LLM)       & Evaluation findings.                                 \\
-		E2          & Decisions on findings. Accept or return to backlog.         & Developer      & Findings and/or Validated architecture.              \\
+		A1          & Identify ASR candidates using ASR indicators               & AI (LLM)       & ASRs with rationale and confidence + uncertain ASRs \\
+		A2          & Review ASRs and add, remove and decide on uncertain ones   & Developer      & ASRs to the backlog                                 \\
+		S1          & Generate solution options for each ASR                     & AI (LLM)       & Options for ASRs with pros, cons, and trade-offs    \\
+		S2          & Eliminate, select, and add solutions                       & Developer      & Selected solutions                                  \\
+		S3          & Write the design rationale document                        & AI (LLM)       & Design rationale: decisions, pros, cons, trade-offs \\
+		S4          & Check the rationale for missing details and errors         & Developer      & Design decisions                                    \\
+		S5          & Generate PlantUML diagrams (context, container, component) & AI (LLM)       & PlantUML diagrams                                   \\
+		S6          & Review diagrams and give prompts for corrections           & Developer      & Candidate architectural solutions                   \\
+		E1          & Separate AI evaluates design against ASRs                  & AI (LLM)       & Evaluation findings                                 \\
+		E2          & Decisions on findings. Accept or return to backlog         & Developer      & Findings and/or Validated architecture              \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
+
+Each step of the process outlined in table \ref{tab:design_process_steps} and figure \ref{fig:artifact_design-process} is described in detail in the following sections. Each step has its own table with the same structure. \emph{Purpose} describes what the step aims to achieve. \emph{Input} lists all the documents needed to perform the step. \emph{Actor} tells whether the step is done by the developer or the AI. \emph{Prompt} refers to the prompt that is used in the step. The prompts can be found from the Appendix~\ref{app:prompts}. \emph{Output} details the documents the step produces. \emph{Developer checks} lists what the developer must verify before they can move on to the next step. \emph{Completion criteria} defines when the step is ready. \emph{Rationale} points to the section where the design of the step is justified and refers to the relevant research.
 
 \begin{figure}[htbp]
 	\centering
