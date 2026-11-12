@@ -29,6 +29,9 @@
 \usepackage{pdfcomment}             % alt text
 \usepackage[titletoc,title,toc]{appendix}   % appendides
 \usepackage[figure,table]{totalcount}   % counting
+\usepackage{totcount}                    % counting appendices
+\newtotcounter{appendixcount}             % \total{appendixcount} = number of appendices
+\AddToHook{env/appendices/end}{\setcounter{appendixcount}{\value{section}}}
 \usepackage{booktabs} %for tables
 \usepackage{tabularx} % for tables
 \usepackage{listings} % For prompt appendix
