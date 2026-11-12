@@ -102,10 +102,7 @@ In the first step A1, the requirements and context documents are given to the LL
 	\end{tabularx}
 \end{table}
 
-
-As a first step, these documents are given to the chosen LLM tool. It is prompted to analyze the context and requirements to find out the ASRs based on the list of indicators by \textcite{chenCharacterizingArchitecturallySignificant2013}. Examples of all prompts will be given in the demonstration in section 5. The LLM is asked to provide a list of ASRs it gathered from the given documents. The list must include the requirements, arguments for why each requirement was recognised to be significant, and some indication of how sure the LLM is of each ASR. The LLM is also asked to provide a list of requirements it is not sure whether or not they are architecturally significant.
-
-A study made by \textcite{tagliaferroLeveragingLLMsAutomate2025} found that LLMs are able to produce UML components from natural language specifications. In this case smaller steps are taken at a time, since that is more in line with the constant communication flow proposed by \textcite{terragniFutureAIDrivenSoftware2025}. All of these outputs are asked, so that the engineer can go through what the AI has produced, and why it came to different conclusions. This gives the engineer the opportunity to correct mistakes made by the LLM in an earlier stage, guide it properly in the next stages, and see if there is more context, input, or information needed. The engineer can do their own analysis, add more ARSs, remove some or make decisions in the case the LLM is not sure whether a requirement is significant or not. Because these phases aren't sequential, both the LLM and the engineer can modify the list of ASRs any time during the design process.
+In the step A2, the developer goes through and analyzes the output of step A1. Most of the attention should go towards the candidates with low confidence and the uncertain requirements. That is why the LLM was asked to point those out. Candidates with high confidence can be checked faster. However, some of the high confidence candidates should be checked thoroughly as well to make sure the LLM has understood the assignment correctly. If the LLM has more questions, the developer answers them. Step A1 can be repeated for some requirements if the answers change the classification of those requirements. The developer should also add any ASRs the LLM did not recognise. They should also reject candidates that are not so significant in for the product. The developer prioritises each ASR and adds them to the backlog. It is good to remember, that since the process is not only sequential, the list of ASRs can be changed later in the process.
 
 \subsection{Architectural Synthesis}
 \label{sec:architectural_synthesis}
@@ -134,7 +131,11 @@ Tämä vaatii vielä tutkimusta. Kysymys: voiko tässä hyödyntää tekoälyage
 
 This chapter explains all the choices with the relevant research.
 
+A1 ja A2 kopioitu alkuperäisestä tekstistä. TODO: muokkaa teksti sopivaksi tähän kappaleeseen. :
 
+As a first step, these documents are given to the chosen LLM tool. It is prompted to analyze the context and requirements to find out the ASRs based on the list of indicators by \textcite{chenCharacterizingArchitecturallySignificant2013}. Examples of all prompts will be given in the demonstration in section 5. The LLM is asked to provide a list of ASRs it gathered from the given documents. The list must include the requirements, arguments for why each requirement was recognised to be significant, and some indication of how sure the LLM is of each ASR. The LLM is also asked to provide a list of requirements it is not sure whether or not they are architecturally significant.
+
+A study made by \textcite{tagliaferroLeveragingLLMsAutomate2025} found that LLMs are able to produce UML components from natural language specifications. In this case smaller steps are taken at a time, since that is more in line with the constant communication flow proposed by \textcite{terragniFutureAIDrivenSoftware2025}. All of these outputs are asked, so that the engineer can go through what the AI has produced, and why it came to different conclusions. This gives the engineer the opportunity to correct mistakes made by the LLM in an earlier stage, guide it properly in the next stages, and see if there is more context, input, or information needed. The engineer can do their own analysis, add more ARSs, remove some or make decisions in the case the LLM is not sure whether a requirement is significant or not. Because these phases aren't sequential, both the LLM and the engineer can modify the list of ASRs any time during the design process.
 
 
 
