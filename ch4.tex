@@ -14,6 +14,15 @@ The artifact consists of a process flow diagram, a set of tables describing each
 
 The architecture design process is pictured in figure \ref{fig:artifact_design-process}. It is a process flow diagram that utilizes swimlanes to make it easier to understand what steps of the process are done by the AI or by the developer. Each rounded rectangle represents one step in the process. Green rectangles are steps performed by the developer and yellow rectangles represent tasks given to the AI. Blue icons represent different documents. The diagram is divided into three main parts, which are architectural analysis (section \ref{sec:architectural_analysis}), architectural synthesis (section \ref{sec:architectural_synthesis}), and architectural evaluation (section \ref{sec:architectural_evaluation}).
 
+\begin{figure}[htbp]
+	\centering
+	\pdftooltip{%
+		\includegraphics[width=\textwidth]{figs/artifact_design-process.pdf}%
+	}{The process flow chart for architecture design process.}
+	\caption{The process flow chart for architecture design process.}
+	\label{fig:artifact_design-process}
+\end{figure}
+
 The architectural backlog is an element connecting the three phases of the process. The concept comes from the general model by \textcite[pp.~114-115]{hofmeisterGeneralModelSoftware2007}, who found that in all the methods they studied, architects maintain a backlog of problems, issues, and needs they have to tackle. The backlog is also used to store ideas they might want to use. ASRs from architectural analysis, possible problems from architectural synthesis, and issues found in architectural evaluation are put into the backlog. An item in the backlog can be very simple, such as a statement like "A decision about X must be made." An item is removed from the backlog, when the issue has been solved. This way the backlog drives the design process and sets objectives of things that need to be solved.
 
 In this case, the backlog is a document that is used by both the developer and the AI. Each item in it has an ID, a type (ASR, open issue, decision to be made later, or evaluation finding), a description, the step it was created on, a priority, and a status. Both actors can access and modify the backlog at any time and items can be added as needed. However, only the developer can remove an item from the backlog. Initially the backlog is filled with the ASRs after step A2, as shown in figure~\ref{fig:artifact_design-process}. The step S1 accesses the backlog first.
@@ -41,14 +50,6 @@ The following table \ref{tab:design_process_steps} lists all the steps in the de
 	\end{tabularx}
 \end{table}
 
-\begin{figure}[htbp]
-	\centering
-	\pdftooltip{%
-		\includegraphics[width=\textwidth]{figs/artifact_design-process.pdf}%
-	}{The process flow chart for architecture design process.}
-	\caption{The process flow chart for architecture design process.}
-	\label{fig:artifact_design-process}
-\end{figure}
 \FloatBarrier
 
 Each step of the process outlined in table \ref{tab:design_process_steps} and figure \ref{fig:artifact_design-process} is described in detail in the following sections. Each step has its own table with the same structure. \emph{Purpose} describes what the step aims to achieve. \emph{Input} lists all the documents needed to perform the step. \emph{Actor} tells whether the step is done by the developer or the AI. \emph{Prompt} refers to the prompt that is used in the step. The prompts can be found from the Appendix~\ref{app:prompts}. \emph{Output} details the documents the step produces. \emph{Developer checks} lists what the developer must verify before they can move on to the next step. \emph{Completion criteria} defines when the step is ready. \emph{Rationale} points to the section where the design of the step is justified and refers to the relevant research.
@@ -57,7 +58,50 @@ Each step of the process outlined in table \ref{tab:design_process_steps} and fi
 \subsection{Architectural Analysis}
 \label{sec:architectural_analysis}
 
-The purpose of Architectural Analysis is to figure out the set of ASRs for the system.In the general model provided by \textcite{hofmeisterGeneralModelSoftware2007}, Architectural Analysis has two inputs: architectural concerns and context. Architectural concerns include requirement, but they might also include things like mandatory design decisions such as standards. The context means the environment of the system. That includes "the developmental, operational, political, and other influences of the system." In this process it is assumed, that these two inputs have already been formed.
+The purpose of Architectural Analysis is to figure out the set of ASRs for the system. Architectural Analysis has two inputs: architectural concerns and context. Architectural concerns include requirements, but they might also include things like mandatory design decisions such as standards. The context means the environment of the system. That includes the business goal of the product, the budget, the schedule, and the skills of the developers. In this process it is assumed, that these two inputs have already been formed before the process starts. Each requirement must have an unique identifier so that it can be traced through the process. The requirements also must be prioritised using the MoSCoW method. Only the requirements marked as \emph{must have} are taken into account, since the goal is a minimum viable architecture.
+
+This phase consists of two steps. In the step A1, the AI tool identifies ASR candidates from the requirements. Then in A2, the developer reviews the candidates, prioritises them, and adds them to the architectural backlog.
+
+\begin{table}[!htbp]
+	\caption{Step A1: Identify ASR candidates.}
+	\label{tab:step_A1}
+	\begin{tabularx}{\textwidth}{l X}
+		\toprule
+		\textbf{Field}      & \textbf{Description}                                                                                                                                                                                                                                                                                                               \\
+		\midrule
+		Purpose             & Identify which requirements are architecturally significant.                                                                                                                                                                                                                                                                       \\
+		Input               & Requirements document (TODO: lisää template liitteisiin) (must-have requirements, each with a unique identifier) and context document (TODO: lisää template liitteisiin).                                                                                                                                                          \\
+		Actor               & AI (LLM)                                                                                                                                                                                                                                                                                                                           \\
+		Prompt              & P-A1 (Appendix~\ref{app:prompts}).                                                                                                                                                                                                                                                                                                 \\
+		Output              & A table of ASR candidates with columns for ASR-ID, requirement ID, indicators, rationale, and confidence in range high/medium/low. Also a list of requirements whose significance is not clear is provided. A list of questions is generated for the developer if some information is missing or the AI is unsure about something. \\
+		Developer checks    & The output follows the requested format. Every requirement ID exists in the original requirements document and no requirements have been hallucinated.                                                                                                                                                                             \\
+		Completion criteria & Every must-have requirement has been classified as an ASR candidate, not an ASR, or uncertain.                                                                                                                                                                                                                                     \\
+		Rationale           & Section~\ref{sec:design_rationale}.                                                                                                                                                                                                                                                                                                \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+In the first step A1, the requirements and context documents are given to the LLM with the prompt P-A1. The prompt tells the LLM to analyze each requirement one by one and classify them using the indicators and heuristics provided by \textcite{chenCharacterizingArchitecturallySignificant2013}. For each potential ASR candidate, the LLM has to name the applicable indicators, explain why the requirement is significant, and also state how sure it is about the classification. If the LLM is not able to classify some requirements, those are listed separately with an explanation so the developer can make the decisions. In the prompt the LLM is also instructed to not to invent any new requirements. However, the developer still has to check this. If LLM needs information that is not given in the input documents, it lists the questions for the developer. The developer answers the questions so that the LLM can continue its work. Before moving onto the next step A2, the developer verifies the output is complete and only real requirements are used. The content is then reviewed in step A2.
+
+\begin{table}[!htbp]
+	\caption{Step A2: Review and prioritise ASRs.}
+	\label{tab:step_A2}
+	\begin{tabularx}{\textwidth}{l X}
+		\toprule
+		\textbf{Field}      & \textbf{Description}                                                                                                                                                                                                                            \\
+		\midrule
+		Purpose             & Confirm and prioritise the final set of ASRs and then add them to the architectural backlog.                                                                                                                                                    \\
+		Input               & Output of step A1, requirements document (TODO: lisää template liitteisiin) (must-have requirements, each with a unique identifier) and context document (TODO: lisää template liitteisiin).                                                    \\
+		Actor               & Developer                                                                                                                                                                                                                                       \\
+		Prompt              & None. The developer can still ask questions about the classifications from the LLM.                                                                                                                                                             \\
+		Output              & Approved ASRs in the architectural backlog with the columns ASR-ID, requirement ID, description, indicators, and priority.                                                                                                                      \\
+		Developer checks    & Every candidate is accepted or rejected. Every uncertain requirement is decided. Relevant questions by LLM are answered. Missing ASRs are added. If there are candidates with low confidence, those are checked against the original documents. \\
+		Completion criteria & There are no unresolved candidates or uncertain requirements. The ASRs have been added to the backlog with prioritization.                                                                                                                      \\
+		Rationale           & Section~\ref{sec:design_rationale}.                                                                                                                                                                                                             \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
 
 As a first step, these documents are given to the chosen LLM tool. It is prompted to analyze the context and requirements to find out the ASRs based on the list of indicators by \textcite{chenCharacterizingArchitecturallySignificant2013}. Examples of all prompts will be given in the demonstration in section 5. The LLM is asked to provide a list of ASRs it gathered from the given documents. The list must include the requirements, arguments for why each requirement was recognised to be significant, and some indication of how sure the LLM is of each ASR. The LLM is also asked to provide a list of requirements it is not sure whether or not they are architecturally significant.
 
@@ -85,7 +129,10 @@ The purpose of this phase is to ensure that the made architectural decisions are
 
 Tämä vaatii vielä tutkimusta. Kysymys: voiko tässä hyödyntää tekoälyagentteja, eli toinen tekoälyagentti arvioi toisen tekemää työtä. Todennäköisesti, mutta joku perustelu täytyisi varmasti löytää.
 
+\subsection{Design Rationale}
+\label{sec:design_rationale}
 
+This chapter explains all the choices with the relevant research.
 
 
 
