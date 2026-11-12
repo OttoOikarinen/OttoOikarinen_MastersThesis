@@ -30,7 +30,7 @@
 %% This data will appear in the pdf file properties %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{filecontents*}[overwrite]{\jobname.xmpdata}
-\Title{AI Driven MVA Development Process in a Start-Up Environment}
+\Title{AI Assisted MVA Development Process in a Start-Up Environment}
 \Author{Otto Oikarinen}
 \Language{en-GB}
 \Subject{The abstract or short description.}
@@ -40,11 +40,11 @@
 %% Document definition start
 \documentclass[a4paper,oneside,12pt,notitlepage]{article}
 \input{pref}  % settings
-\def\version{2.0/27.09.2026}   % version number
+\def\version{3.0/12.11.2026}   % version number
 % give you name here, will be printed on the front page, abstract, and tiivistelmä.
 \def\myname{Otto Oikarinen}
 % give your thesis information here (English), which will be printed on the front page and abstract.
-\def\mytitle{AI Driven MVA Development Process in a Start-Up Environment}
+\def\mytitle{AI Assisted MVA Development Process in a Start-Up Environment}
 \def\mysubtitle{Version \version}       % subtitle
 %%\def\mysubtitle{}                     % no subtitle
 \def\university{Lappeenranta–Lahti University of Technology LUT}
@@ -67,7 +67,7 @@
 \def\examinerA{Professor Kari Smolander}
 \def\examinerB{Postdoctoral Researcher Jiri Musto}
 % give your thesis information here (Finnish), which will be printed on the tiivistelmä.
-\def\mytitleFIN{AI pohjainen MVA-kehitysprosessi start-up -ympäristössä}
+\def\mytitleFIN{AI avusteinen MVA-kehitysprosessi start-up -ympäristössä}
 \def\mysubtitleFIN{Versio \version}
 \def\universityFIN{Lappeenrannan–Lahden teknillinen yliopisto LUT}
 %%\def\schoolFIN{LUTin energiajärjestelmien tiedekunta}
@@ -123,6 +123,7 @@
 {Appendix \thesection}{1em}{}
 
 % Appendices
+\pagenumbering{roman}
 \begin{appendices}
 	\renewcommand{\thesection}{\arabic{section}}    % Numbering style
 	\input{appA}            % Add appendix 1
