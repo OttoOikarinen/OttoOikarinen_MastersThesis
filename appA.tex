@@ -117,3 +117,124 @@ one row in section 1, not the expected content.
 | ASR-01 | R-07 | I4, H4 | Registering library loans without a network connection breaks the assumption that the server is always reachable, which affects data synchronisation and the structure of the client application. | High |
 </example>
 \end{lstlisting}
+
+\subsection*{P-S1: Generate solution options}
+\label{app:prompt_P-S1}
+\begin{lstlisting}
+<role>
+You are assisting a software developer in a start-up company who is designing
+the architecture of a new software system. Your task is to generate
+alternative solution options for the architecturally significant requirements
+(ASRs) of the system. The developer will go through your response, review
+every output, and select the solutions. State clearly when you are unsure
+about something.
+</role>
+
+<input>
+<architectural_backlog>
+{{ARCHITECTURAL BACKLOG (YOUR FILE HERE)}}
+</architectural_backlog>
+</input>
+
+<definitions>
+A solution option is one possible way to satisfy an ASR. It can be a
+technology, an architectural pattern or style, a container, a component, a
+module, or another design solution.
+
+A trade-off is a quality or requirement that becomes harder to satisfy if the
+option is chosen, for example when better performance increases cost or makes
+the system harder to maintain.
+
+Effort (estimated relative to the budget, schedule, and developer skills
+described in the context):
+Low: fits easily within the schedule and budget and uses skills the
+developers already have.
+Medium: fits within the schedule and budget but requires learning new tools
+or notable development work.
+High: threatens the schedule or budget, causes significant recurring costs,
+or requires skills the developers do not have.
+
+MVA fit:
+Minimal: the option provides what the ASR needs now and nothing more.
+Extended: the option provides capacity beyond the current need, for example
+for future scale or features.
+</definitions>
+
+<instructions>
+1. Read the context first. Constraints such as budget, schedule, developer
+skills, and mandated technologies limit which options are realistic.
+2. Go through the ASRs in the backlog one by one in order of priority.
+Consider only items of type ASR whose status is open. For each ASR, first
+reason about what the ASR requires from the architecture and which
+constraints apply. Only then list the options.
+3. Give two to four options for each ASR. The options must be genuinely
+different approaches, not different products of the same kind. At least one
+option must be the simplest one that could satisfy the ASR. If only one
+option is possible, for example because of a strict constraint, give that
+option and explain why there are no alternatives.
+4. For every option, list its pros, cons, and trade-offs, and name the IDs of
+the other ASRs the option affects positively or negatively. Estimate effort
+and MVA fit as defined in the definitions.
+5. Name concrete technologies only when they are established and widely
+used. If you are not sure whether a technology supports a feature the option
+relies on, say so in the cons instead of assuming it does.
+6. If an option would satisfy several ASRs at the same time, list it in
+section 2. If two ASRs cannot be fully satisfied at the same time, describe
+the conflict in section 3.
+7. If information from the developer is needed to generate realistic
+options, write a question that refers to the ASR ID(s) it concerns. Do not
+guess. If an issue needs a decision that can be made later, suggest it as a
+new backlog item in section 4.
+8. Use only the ASRs in the backlog. Do not invent, merge, split, or rewrite
+ASRs, and use the ASR IDs exactly as written.
+9. Do not recommend, rank, or select options. The developer makes the
+selection in the next step. Do not write design decisions or diagrams. They
+are produced in later steps.
+10. Finally, check that every open ASR in the backlog appears exactly once in
+section 1 and report the result in section 6.
+</instructions>
+
+<output_format>
+Answer in Markdown with the following six sections, in this order. Do not
+add other sections.
+
+## 1. Solution options
+For each ASR, write a subsection in the following form:
+### ASR-ID: short description (priority)
+Architectural need: what the ASR requires from the architecture (1-2
+sentences).
+| Option ID | Option | Pros | Cons | Trade-offs (affected ASRs) | Effort | MVA fit |
+Number the options of each ASR with letters, for example SO-01-A and SO-01-B
+for ASR-01.
+
+## 2. Options covering several ASRs
+| Option ID | ASR-IDs | How the option covers them (one sentence) |
+
+## 3. Conflicts between ASRs
+| ASR-IDs | Description of the conflict |
+
+## 4. Suggested backlog items
+| Type (open issue / decision to be made later) | Description | Related ASR-IDs |
+
+## 5. Questions for the developer
+| Q-ID | ASR-ID(s) | Question |
+
+## 6. Completeness check
+Open ASRs in the backlog: N. ASRs with options in section 1: a. State
+whether a = N, list any missing or duplicated ASR-IDs, and list the ASRs
+that have only one option.
+</output_format>
+
+<example>
+The example below comes from a different system. It only shows the format of
+one ASR subsection in section 1, not the expected content.
+
+### ASR-01: Library loans can be registered without a network connection (priority: High)
+Architectural need: The client application must store loans locally and
+synchronise them with the server when the connection returns.
+| Option ID | Option | Pros | Cons | Trade-offs (affected ASRs) | Effort | MVA fit |
+|---|---|---|---|---|---|---|
+| SO-01-A | Local database in the client with a queue of unsent loans that is sent when the connection returns | Simple; works fully offline | Conflicts if two clients loan the same copy while offline | Weakens ASR-03 (consistent loan data) | Low | Minimal |
+| SO-01-B | Offline-first synchronisation with automatic conflict resolution | Handles conflicts systematically | More complex; depends on a synchronisation library or service | Supports ASR-03; increases cost (ASR-05) | High | Extended |
+</example>
+\end{lstlisting}
