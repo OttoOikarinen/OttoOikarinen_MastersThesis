@@ -130,6 +130,30 @@ According to \textcite{hofmeisterGeneralModelSoftware2007}, the purpose of this 
 
 In step S1, the architectural backlog and the context document are given to the LLM. The prompt P-S1 is given as well. The LLM goes through the open ASRs in the backlog in order of priority. For each ASR, it then describes what is required from the architecture to fulfill the ASR. Then it generates alternative solution options. An option can be for example a technology, an architectural pattern or a style, a container, a component, or another design solution. One of the options must be the simplest one that could fulfill the ASR so that the AI always generates simple solutions as well for the developer to choose from. Then pros, cons, trade-offs, and IDs of other ASRs the option affects are listed for each option. The LLM also estimates the effort the option needs based on the budget, schedule, and skills described in the context. It also tells the developer if the option only provides what is needed now (MVA) or whether it also keeps future needs in mind. These estimates make it easier for the developer to choose options that help keep the architecture minimal and suitable for the limited resources of a start-up. Some options can address several ASRs at once, and some can conflict with others. The LLM will create lists for both cases so the developer can easily recognise these and take them into account in the next step. If there are new issues that need to be solved, those are proposed as new backlog items. The LLM is instructed not to recommend, rank, or select any options, so that the developer can actually make the decisions in the next step. If the LLM is not sure whether a technology supports a feature, it must say so. Before the developer can move to the next step, they must make sure that every ASR has options, no ASRs have been hallucinated, and that unfamiliar technologies exist.
 
+
+\begin{table}[!htb]
+	\caption{Step S2: Eliminate, select, and add solutions.}
+	\label{tab:step_S2}
+	\begin{tabularx}{\textwidth}{l X}
+		\toprule
+		\textbf{Field}      & \textbf{Description}                                                                                                                                                                                                                            \\
+		\midrule
+		Purpose             & Choose the solutions that form the architecture by eliminating options that are not suitable, selecting the most suitable ones, and adding options the LLM did not recognise and generate. \\
+		Input               & Output of step S1, architectural backlog, and context document.                          \\
+		Actor               & Developer                                                                                                                                                                                                                                    \\
+    Prompt              & None. The developer can still ask questions about the options or ask for more options for a specific ASR.                                                                                                                                                             \\
+		Output              & Selected solutions document (TODO: lisää template liitteisiin) that has columns for ASR-ID, selected option ID, reason for selection, and rejected option IDs included with reasons for rejection. Also a list of resolved conflicts between ASRs and an updated architectural backlog.\\
+    Developer checks    & Every conflict listed in S1 is solved and the choice is written down. The selected options are compatible with each other. The total effort of the selected options fit the given constraints described in the context. Options with the MVA fit \emph{extended} are selected only if there is a good reason. Every selection and rejection has a reason. \\
+		Completion criteria & Every open ASR in the backlog has one selected solution, or the decision has been postponed and added to the backlog. \\
+		Rationale           & Section~\ref{sec:design_rationale}.                                                                                     \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+In step S2, the developer goes through and analyses the output from the previous step that includes the solution options. The developer decides which of them form the architecture. It is useful to start from the options that cover multiple ASRs since selecting them might reduce the needed technologies and components in the system. Next, the developer must solve the conflicts between different ASRs the LLM has listed. The developer should favour the ASR with higher priority, but the decision always depends on the context. After that, the developer goes through the remaining ASRs. Options that are not suitable are eliminated. The most suitable option for each ASR is chosen. Options with the MVA fit \emph{minimal} should be preferred, since the goal is to create an architecture that contains only what is needed at the moment. If none of the options is good, the developer can add their own option. They can also give more information and repeat S1 for that ASR. If the developer is not familiar with an option or a technology used in an option, they can ask the LLM to explain it better. When there are no more ASRs, the developer must check that the solutions they selected are compatible with each other. They also must check that the total effort of the solutions fits the constraints of the start-up. If a decision doesn't have to be made yet, it should be postponed and added to the backlog. 
+
+The developer must write a short reason for every selected and rejected option. These are required for step S3, where the LLM writes the design rationale. They also can contain the project-specific knowledge and experience the LLM does not have. This way the LLM does not have to generate justifications for decisions, since they were made by the developer.
+
 \subsection{Architectural Evaluation}
 \label{sec:architectural_evaluation}
 
